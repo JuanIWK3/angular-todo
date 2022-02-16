@@ -17,6 +17,11 @@ export class AppComponent {
 
   constructor(private formBuilder: FormBuilder) {}
 
+  deleteTask(event: number): void {
+    this.tasks.splice(event, 1);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
   onSubmit() {
     if (
       this.addTaskForm.value.name !== '' &&
