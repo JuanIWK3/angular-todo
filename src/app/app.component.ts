@@ -11,6 +11,18 @@ export class AppComponent {
     localStorage.getItem('tasks') || '[]'
   );
 
+  checkbox: boolean = false;
+
+  check(event: Event) {
+    let input = event.target as HTMLInputElement;
+
+    if (input.checked) {
+      this.checkbox = true; // disable patch
+    } else {
+      this.checkbox = false;
+    }
+  }
+
   addTaskForm = this.formBuilder.group({
     name: '',
   });
