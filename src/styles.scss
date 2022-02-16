@@ -1,14 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import './dist/scss/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: roboto;
+  font-weight: 400;
+  color: $tertiary-color;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: $primary-background-color;
 }

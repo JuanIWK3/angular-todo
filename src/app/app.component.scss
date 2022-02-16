@@ -1,0 +1,92 @@
+@import '../dist/scss/variables.scss';
+
+:host {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+
+  color: $tertiary-color;
+  font-size: 20px;
+}
+
+main {
+  width: 100%;
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100px;
+    }
+  }
+
+  ul {
+    width: 100%;
+    li {
+      margin: 2px;
+      padding: 8px 0 8px 8px;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      background-color: #333;
+      border-radius: 0.3rem;
+
+      .delete-task-button {
+        padding: 12px 15px;
+        background: none;
+        border: none;
+
+        color: $danger-color;
+        cursor: pointer;
+        border-top-right-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  form {
+    display: flex;
+    width: 100%;
+    input {
+      width: 100%;
+      height: 32px;
+      background-color: rgb(41, 41, 41);
+      border: none;
+      border-top-left-radius: 0.3rem;
+      padding: 8px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .add-task-button {
+      padding: 8px 12px;
+      background: rgb(41, 41, 41);
+      border: none;
+      border-bottom-right-radius: 0.3rem;
+      cursor: pointer;
+    }
+  }
+}
