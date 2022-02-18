@@ -1,11 +1,14 @@
-<div>
-  <header>Tasks</header>
+<div [ngClass]="storedTheme || ''">
+  <header>
+    <p>Tasks</p>
+    <app-config></app-config>
+  </header>
   <main>
-    <div class="empty" *ngIf="tasks.length == 0">
+    <div class="empty" *ngIf="!tasks.length">
       <img src="../assets/img/task-32.svg" alt="" />
       <p>Tasks show up here</p>
     </div>
-    <div *ngIf="tasks.length > 0">
+    <div *ngIf="tasks.length">
       <ul cdkDropList (cdkDropListDropped)="drop($event)">
         <li *ngFor="let task of tasks; let i = index" cdkDrag>
           <input
@@ -22,8 +25,16 @@
   </main>
   <footer>
     <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
-      <input formControlName="name" type="text" />
-      <button type="submit" class="add-task-button">+</button>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>New Task</mat-label>
+        <input autoComplete="off" matInput formControlName="name" type="text" />
+        <button mat-button class type="submit" class="add-task-button">
+          +
+        </button>
+      </mat-form-field>
     </form>
+    <button mat-button class="delete-all" (click)="deleteAll()">
+      Delete All
+    </button>
   </footer>
 </div>
