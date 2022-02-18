@@ -1,17 +1,26 @@
-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+p {
+  margin: 0;
+}
+
+mat-form-field {
+  width: 40px;
+  height: 40px;
 }
 
 mat-select {
-  position: absolute;
-  font-size: 16px;
-  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
 
-  mat-option {
-    position: absolute;
-    bottom: 0;
-  }
+  font-size: 16px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+
+  display: flex;
+  justify-content: space-between;
 }

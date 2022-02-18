@@ -25,6 +25,7 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
+  height: 40px;
 
   width: 90vw;
   max-width: 500px;
@@ -35,10 +36,9 @@ header {
   }
 
   app-config {
-    width: 20px;
-    height: 20px;
     position: absolute;
     right: 0px;
+    top: 0px;
     cursor: pointer;
   }
 }

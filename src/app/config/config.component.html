@@ -1,7 +1,8 @@
 <mat-select>
-  <mat-option>
-    Dark Theme
-    <mat-slide-toggle [checked]="isDarkTheme" (change)="setTheme()">
-    </mat-slide-toggle>
+  <mat-option (click)="setTheme()">
+    <div class="theme-option">
+      <p>Dark Theme</p>
+      <mat-slide-toggle [checked]="isDarkTheme"> </mat-slide-toggle>
+    </div>
   </mat-option>
 </mat-select>
