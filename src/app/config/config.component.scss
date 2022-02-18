@@ -1,0 +1,17 @@
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+mat-select {
+  position: absolute;
+  font-size: 16px;
+  width: 30px;
+
+  mat-option {
+    position: absolute;
+    bottom: 0;
+  }
+}
