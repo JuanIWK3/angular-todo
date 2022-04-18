@@ -1,8 +1,10 @@
-<mat-select>
-  <mat-option (click)="setTheme()">
-    <div class="theme-option">
-      <p>Dark Theme</p>
-      <mat-slide-toggle [checked]="isDarkTheme"> </mat-slide-toggle>
+<div class="theme-option" (click)="setTheme()">
+  <p></p>
+  <div class="toggle" [ngClass]="isDarkTheme ? 'active' : ''">
+    <div class="slider">
+      <div class="handle">
+        <img [src]="isDarkTheme ? sunIcon : moonIcon " alt="">
+      </div>
     </div>
-  </mat-option>
-</mat-select>
+  </div>
+</div>

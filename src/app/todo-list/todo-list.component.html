@@ -9,18 +9,17 @@
       <p>Tasks show up here</p>
     </div>
     <div *ngIf="tasks.length">
-      <ul cdkDropList (cdkDropListDropped)="drop($event)">
-        <li *ngFor="let task of tasks; let i = index" cdkDrag>
-          <input
-            type="checkbox"
-            [checked]="task.checked"
-            (change)="check($event, i)" />
-          <p [ngClass]="task.checked ? 'checked' : 'unchecked'">
-            {{ task.name }}
-          </p>
-          <button (click)="deleteTask(i)" class="delete-task-button">X</button>
-        </li>
-      </ul>
+      <mat-list cdkDropList (cdkDropListDropped)="drop($event)" color="accent">
+        <mat-list-item *ngFor="let task of tasks; let i = index" cdkDrag color="accent">
+          <div class="wrapper">
+            <input type="checkbox" [checked]="task.checked" (change)="check($event, i)" />
+            <p [ngClass]="task.checked ? 'checked' : 'unchecked'">
+              {{ task.name }}
+            </p>
+            <button (click)="deleteTask(i)" class="delete-task-button">X</button>
+          </div>
+        </mat-list-item>
+      </mat-list>
     </div>
   </main>
   <footer>

@@ -24,3 +24,45 @@ mat-select {
   display: flex;
   justify-content: space-between;
 }
+
+$size: 20px;
+
+.toggle {
+  margin: 8px;
+  user-select: none;
+
+  &.active {
+    .slider {
+      .handle {
+        left: unset;
+        right: -1px;
+      }
+    }
+  }
+  .slider {
+    height: $size;
+    width: calc($size * 2);
+    position: relative;
+    border-radius: calc($size * 2);
+    border: 1px solid #ccc;
+
+    .handle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      height: $size;
+      width: $size;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      background: #fff;
+
+      img {
+        height: 22px;
+        height: 22px;
+      }
+    }
+  }
+}

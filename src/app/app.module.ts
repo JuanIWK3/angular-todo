@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,18 +18,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 
 import { TodoListComponent } from './todo-list/todo-list.component';
-import { TaskConfigComponent } from './task-config/task-config.component';
 import { ConfigComponent } from './config/config.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TodoListComponent,
-    TaskConfigComponent,
-    ConfigComponent,
-  ],
+  declarations: [AppComponent, TodoListComponent, ConfigComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    MatListModule,
   ],
 
   providers: [],

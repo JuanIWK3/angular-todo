@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 export class ConfigComponent {
   storedTheme: string = localStorage.getItem('theme') || '';
   isDarkTheme: boolean = false;
+  sunIcon = '../../assets/icons/sun.svg';
+  moonIcon = '../../assets/icons/moon.svg';
 
   constructor(private router: Router) {}
-  checked: boolean = false;
 
   ngOnInit(): void {
     if (this.storedTheme == 'dark') {
@@ -20,22 +21,15 @@ export class ConfigComponent {
     }
   }
 
-  todo() {
-    console.log('a');
-
-    this.router.navigateByUrl('/');
-  }
-
   setTheme() {
-    if (!this.isDarkTheme) {
-      this.isDarkTheme = true;
+    if (localStorage.getItem('theme') !== 'dark') {
       document.body.classList.add('dark-theme');
       localStorage.setItem('theme', 'dark');
+      this.isDarkTheme = true;
     } else {
-      this.isDarkTheme = false;
-      console.log('a');
       document.body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
+      localStorage.removeItem('theme');
+      this.isDarkTheme = false;
     }
   }
 }
