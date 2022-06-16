@@ -4,19 +4,27 @@
     <app-config></app-config>
   </header>
   <main>
-    <div class="empty" *ngIf="!tasks.length">
+    <div class="empty" *ngIf="!initialTodos.length">
       <img src="../assets/img/task-32.svg" alt="" />
       <p>Tasks show up here</p>
     </div>
-    <div *ngIf="tasks.length">
+    <div class="task-list" *ngIf="initialTodos.length">
       <mat-list cdkDropList (cdkDropListDropped)="drop($event)" color="accent">
-        <mat-list-item *ngFor="let task of tasks; let i = index" cdkDrag color="accent">
+        <mat-list-item
+          *ngFor="let task of todos | async; let i = index"
+          cdkDrag
+          color="accent">
           <div class="wrapper">
-            <input type="checkbox" [checked]="task.checked" (change)="check($event, i)" />
-            <p [ngClass]="task.checked ? 'checked' : 'unchecked'">
-              {{ task.name }}
+            <input
+              type="checkbox"
+              [checked]="task.completed"
+              (change)="check($event, i)" />
+            <p [ngClass]="task.completed ? 'checked' : 'unchecked'">
+              {{ task.title }}
             </p>
-            <button (click)="deleteTask(i)" class="delete-task-button">X</button>
+            <button (click)="deleteTask(i)" class="delete-task-button">
+              X
+            </button>
           </div>
         </mat-list-item>
       </mat-list>
@@ -26,14 +34,23 @@
     <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>New Task</mat-label>
-        <input autoComplete="off" matInput formControlName="name" type="text" />
+        <input
+          autoComplete="off"
+          matInput
+          formControlName="title"
+          type="text" />
         <button mat-button class type="submit" class="add-task-button">
           +
         </button>
       </mat-form-field>
     </form>
-    <button mat-button class="delete-all" (click)="deleteAll()">
-      Delete All
-    </button>
+    <div class="buttons">
+      <button mat-button class="delete-all" (click)="deleteAll()">
+        Delete All
+      </button>
+      <button mat-raised-button color="accent" (click)="deleteCompleted()">
+        Delete Completed
+      </button>
+    </div>
   </footer>
 </div>

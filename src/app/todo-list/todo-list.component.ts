@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ITaskList } from '../model/task-list';
-import { Router } from '@angular/router';
+import { Todo } from '../models/todo';
+import { combineLatest, Observable, of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,49 +11,66 @@ import { Router } from '@angular/router';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent {
-  tasks: Array<ITaskList> = JSON.parse(localStorage.getItem('tasks') || '[]');
-
   storedTheme: string | null = localStorage.getItem('theme-color');
 
   addTaskForm = this.formBuilder.group({
-    name: '',
-    checked: false,
+    title: '',
+    completed: false,
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  initialTodos: Todo[] = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+  // todos = new BehaviorSubject<Todo[]>(this.initialTodos);
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  get todos(): Observable<Todo[]> {
+    return combineLatest([this.initialTodos]).pipe(
+      tap(console.log),
+      switchMap(() => {
+        return of(this.initialTodos) as Observable<Todo[]>;
+      })
+    );
+  }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.initialTodos, event.previousIndex, event.currentIndex);
   }
 
   check(event: Event, i: number) {
-    let checked = (event.target as HTMLInputElement).checked;
-
-    this.tasks[i].checked = checked;
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.initialTodos[i].completed = !this.initialTodos[i].completed;
+    localStorage.setItem('tasks', JSON.stringify(this.initialTodos));
   }
 
-  deleteTask(event: number): void {
-    this.tasks.splice(event, 1);
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  deleteTask(index: number): void {
+    this.initialTodos.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(this.initialTodos));
   }
 
   deleteAll() {
     const confirm = window.confirm('Delete all tasks?');
     if (confirm) {
-      this.tasks = [];
+      this.initialTodos = [];
       localStorage.removeItem('tasks');
+    }
+  }
+
+  deleteCompleted() {
+    const confirm = window.confirm('Delete all completed tasks?');
+    if (confirm) {
+      this.initialTodos = this.initialTodos.filter((todo) => !todo.completed);
+      localStorage.setItem('tasks', JSON.stringify(this.initialTodos));
     }
   }
 
   onSubmit() {
     if (
-      this.addTaskForm.value.name !== '' &&
-      this.addTaskForm.value.name !== null
+      this.addTaskForm.value.title !== '' &&
+      this.addTaskForm.value.title !== null
     ) {
-      this.tasks.push(this.addTaskForm.value);
+      this.initialTodos.push(this.addTaskForm.value);
       this.addTaskForm.reset();
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      localStorage.setItem('tasks', JSON.stringify(this.initialTodos));
     }
   }
 }

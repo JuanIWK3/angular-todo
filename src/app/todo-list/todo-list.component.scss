@@ -117,14 +117,39 @@ footer {
     }
   }
 
-  .delete-all {
-    color: #fff;
-    background: red;
-    padding: 2px 16px;
-    border: none;
-    border-radius: 0.3rem;
+  .buttons {
+    display: flex;
+    flex-direction: row;
 
-    margin-top: 4px;
+    button {
+      padding: 2px 16px;
+      border: none;
+      border-radius: 0.3rem;
+      margin-top: 4px;
+
+      &.delete-all {
+        background: #ff0000;
+      }
+    }
+  }
+}
+
+.task-list {
+  max-height: calc(60vh);
+  overflow: auto;
+  padding-right: 8px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #212121;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(107, 107, 107);
+    border-radius: 5px;
   }
 }
 
@@ -172,7 +197,8 @@ mat-list-item {
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-placeholder {
